@@ -1,0 +1,134 @@
+
+<mat-card style="background: #ffffffbd;">
+    <mat-card-title>My Reservations</mat-card-title>
+    <!-- <mat-card-subtitle>Start</mat-card-subtitle>
+    <mat-card-actions>
+      <button mat-button>LIKE</button>
+      <button mat-button>SHARE</button>
+    </mat-card-actions> -->
+    <mat-card *ngFor="let reservation of reservations;" style="background-color: #485a6e21; margin: 10px;">
+      <mat-card-title style="font-size: 20px;">{{reservation.departureReservation.fromCity}} to {{reservation.departureReservation.toCity}} <span *ngIf="reservation.returnReservation">(Round Trip)</span><span *ngIf="!reservation.returnReservation">(One-Way)</span>  </mat-card-title>
+      <mat-card-subtitle>Reservation Time: {{reservation.departureReservation.reservationTime | date: 'short'}}</mat-card-subtitle>
+      <mat-card style="background: #e6e8ec;">
+        
+        <div class="row">
+            <div class="col-md-2" style="justify-content: center;
+            display: flex;">
+                <div class="row-wrap">
+                    <div class="row-middle" style="font-size: 14px; font-weight: bolder;">From:</div>
+                    <div class="row-top">{{reservation.departureReservation.fromCity}}</div>
+                    <div class="row-middle">{{reservation.departureReservation.fromAirport}}</div>
+                    <div class="row-bottom">{{reservation.departureReservation.departureTime | date:'shortTime'}}</div>
+              <div class="data">{{reservation.departureReservation.departureTime | date:'mediumDate'}}</div>
+                  </div>
+            </div>
+            <div class="col-md-2" style="font-weight: lighter; padding-top: 20px; justify-content: center;
+            display: flex;">
+                <div class="row-wrap">
+                <div class="row-middle">Number of Stops:</div>
+                <div class="row-bottom">0</div>
+            </div>
+            </div>
+            <div class="col-md-2" style="justify-content: center;
+            display: flex;">
+                <div class="row-wrap">
+                    <div class="row-middle" style="font-size: 14px; font-weight: bolder;">To:</div>
+                <div class="row-top">{{reservation.departureReservation.toCity}}</div>
+                <div class="row-middle">{{reservation.departureReservation.toAirport}}</div>
+                <div class="row-bottom">{{reservation.departureReservation.arrivalTime | date:'shortTime'}}</div>
+              <div class="data">{{reservation.departureReservation.arrivalTime | date:'mediumDate'}}</div>
+              </div></div>
+           
+            <div class="col-md-2" style="padding-top: 20px; justify-content: center;
+            display: flex;"><div class="row-wrap">
+                <div class="row-middle">Flight Duration:</div>
+                <div class="row-bottom"><span *ngIf="reservation.departureReservation.flightDurationDays > 0">{{reservation.departureReservation.flightDurationDays}}d</span>{{reservation.departureReservation.flightDurationHours}}h{{reservation.departureReservation.flightDurationMinutes}}m</div>
+              
+              </div>
+            </div>
+
+            <div class="col-md-2" style="padding-top: 10px; justify-content: center;
+            display: flex;"><div class="row-wrap">
+              <div class="row-middle">Airline Name:</div>
+              <div class="row-bottom">{{reservation.departureReservation.airlineName}}</div>
+                <div class="row-middle">Ticket Class:</div>
+                <div class="row-bottom" *ngIf="reservation.departureReservation.ticketClass==1">Business</div>
+                <div class="row-bottom" *ngIf="reservation.departureReservation.ticketClass==0">Economy</div>
+              
+              </div>
+            </div>
+
+            <div class="col-md-2" style="padding-top: 20px; justify-content: center;
+            display: flex;"><div class="row-wrap">
+                <div class="row-middle">Price:</div>
+                <div class="row-bottom">${{reservation.departureReservation.ticketPrice}}</div>
+              
+              </div>
+            </div>        
+          </div> 
+        </mat-card>
+        <mat-card *ngIf="reservation.returnReservation" style="margin-top:10px; background: #e6e8ec;">
+        
+          <div class="row">
+              <div class="col-md-2" style="justify-content: center;
+              display: flex;">
+                  <div class="row-wrap">
+                      <div class="row-middle" style="font-size: 14px; font-weight: bolder;">From:</div>
+                      <div class="row-top">{{reservation.returnReservation.fromCity}}</div>
+                      <div class="row-middle">{{reservation.returnReservation.fromAirport}}</div>
+                      <div class="row-bottom">{{reservation.returnReservation.departureTime | date:'shortTime'}}</div>
+                <div class="data">{{reservation.returnReservation.departureTime | date:'mediumDate'}}</div>
+                    </div>
+              </div>
+              <div class="col-md-2" style="font-weight: lighter; padding-top: 20px; justify-content: center;
+              display: flex;">
+                  <div class="row-wrap">
+                  <div class="row-middle">Number of Stops:</div>
+                  <div class="row-bottom">0</div>
+              </div>
+              </div>
+              <div class="col-md-2" style="justify-content: center;
+              display: flex;">
+                  <div class="row-wrap">
+                      <div class="row-middle" style="font-size: 14px; font-weight: bolder;">To:</div>
+                  <div class="row-top">{{reservation.returnReservation.toCity}}</div>
+                  <div class="row-middle">{{reservation.returnReservation.toAirport}}</div>
+                  <div class="row-bottom">{{reservation.returnReservation.arrivalTime | date:'shortTime'}}</div>
+                <div class="data">{{reservation.returnReservation.arrivalTime | date:'mediumDate'}}</div>
+                </div></div>
+             
+                <div class="col-md-2" style="padding-top: 20px; justify-content: center;
+                display: flex;"><div class="row-wrap">
+                    <div class="row-middle">Flight Duration:</div>
+                    <div class="row-bottom"><span *ngIf="reservation.returnReservation.flightDurationDays > 0">{{reservation.returnReservation.flightDurationDays}}d</span>{{reservation.returnReservation.flightDurationHours}}h{{reservation.returnReservation.flightDurationMinutes}}m</div>
+                  
+                  </div>
+                </div>
+  
+              <div class="col-md-2" style="padding-top: 20px; justify-content: center;
+              display: flex;"><div class="row-wrap">
+                <div class="row-middle">Airline Name:</div>
+                <div class="row-bottom">{{reservation.returnReservation.airlineName}}</div>
+                  <div class="row-middle">Ticket Class:</div>
+                  <div class="row-bottom" *ngIf="reservation.returnReservation.ticketClass==1">Business</div>
+                  <div class="row-bottom" *ngIf="reservation.returnReservation.ticketClass==0">Economy</div>
+                
+                </div>
+              </div>
+  
+              <div class="col-md-2" style="padding-top: 20px; justify-content: center;
+              display: flex;"><div class="row-wrap">
+                  <div class="row-middle">Price:</div>
+                  <div class="row-bottom">${{reservation.returnReservation.ticketPrice}}</div>
+                
+                </div>
+              </div>        
+            </div> 
+          </mat-card>
+        <mat-card-actions align="end">
+          <button mat-button>Reservation Details</button>
+          <button mat-button>Cancel Reservation</button>
+        </mat-card-actions>
+      </mat-card>
+</mat-card>
+

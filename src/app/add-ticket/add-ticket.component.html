@@ -1,0 +1,48 @@
+<div mat-dialog-content>
+    <div class="container-fluid popwindow">
+        <div class="add-form">
+            <form #addForm="ngForm" class="add-project-form" [formGroup]="addTicketForm">
+
+                
+
+                <mat-form-field appearance="fill" class="form-full-width">
+                    <mat-label>Flight Code</mat-label>
+                    <mat-select  [formControlName]="'flightCode'" [errorStateMatcher]="matcher">
+                        <mat-option *ngFor="let flight of flightList" [value]="flight">{{flight.flightCode}}</mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="addTicketForm.get('flightCode')!.hasError('required')">
+                        Flight Code is <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field class="form-full-width">
+                    <input matInput currencyMask [options]="options" value="" placeholder="Price" [formControlName]="'price'" [errorStateMatcher]="matcher">
+                    <mat-error *ngIf="addTicketForm.get('price')!.hasError('required')">
+                        Price is <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+
+                <!-- <mat-form-field appearance="fill" class="form-full-width">
+                    <mat-label>Assign To</mat-label>
+                    <mat-select [formControlName]="'assignTo'" [errorStateMatcher]="matcher">
+                        <mat-option *ngFor="let member of memberList" [value]="member">{{member.username}}</mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="addTicketForm.get('assignTo').hasError('required')">
+                        You <strong>must</strong> assign member
+                    </mat-error>
+                </mat-form-field> -->
+
+                <div>
+                    <mat-button-toggle-group class="priority-toggle" #group="matButtonToggleGroup" value=0 aria-label="Class Type" (change)="onValChange(group.value)">
+                        <mat-button-toggle value=0>Economy</mat-button-toggle>
+                        <mat-button-toggle value=1>Business</mat-button-toggle>                    
+                    </mat-button-toggle-group>
+
+                </div>
+
+                <button (click)="addTicket(addForm)" mat-raised-button color="primary" [disabled]="!addTicketForm.valid" style="margin-top: 25px;">Add Ticket</button>
+            </form>
+
+        </div>
+    </div>
+</div>

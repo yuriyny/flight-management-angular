@@ -1,0 +1,81 @@
+
+<mat-card *ngIf="flights">
+    <mat-card-title>New York to Lviv</mat-card-title>
+    <mat-card-subtitle>Start</mat-card-subtitle>
+    <mat-card-actions>
+      <button mat-button>LIKE</button>
+      <button mat-button>SHARE</button>
+    </mat-card-actions>
+    <mat-card *ngFor="let flight of flights.departureFlights;" style="background-color: #485a6e21; margin: 10px;">
+        <!-- <mat-card-title>Actions Buttons</mat-card-title>
+        <mat-card-subtitle>End</mat-card-subtitle> -->
+        <div class="row">
+            <div class="col-md-2" style="justify-content: center;
+            display: flex;">
+                <div class="row-wrap">
+                    <div class="row-middle" style="font-size: 14px; font-weight: bolder;">From:</div>
+                    <div class="row-top">{{flight.fromCity}}</div>
+                    <div class="row-middle">{{flight.fromAirport}}</div>
+                    
+                    <div class="row-bottom">{{flight.departureTime | date:'shortTime'}}</div>
+                    <div class="data">{{flight.departureTime | date:'mediumDate'}}</div>
+                  </div>
+            </div>
+            <div class="col-md-2" style="font-weight: lighter; padding-top: 20px; justify-content: center;
+            display: flex;">
+                <div class="row-wrap">
+                <div class="row-middle">Number of Stops:</div>
+                <div class="row-bottom">0</div>
+            </div>
+            </div>
+            <div class="col-md-2" style="justify-content: center;
+            display: flex;">
+                <div class="row-wrap">
+                    <div class="row-middle" style="font-size: 14px; font-weight: bolder;">To:</div>
+                <div class="row-top">{{flight.toCity}}</div>
+                <div class="row-middle">{{flight.toAirport}}</div>
+                <div class="row-bottom">{{flight.arrivalTime | date:'shortTime'}}</div>
+                <div class="data">{{flight.arrivalTime | date:'mediumDate'}}</div>
+              </div></div>
+           
+            <div class="col-md-2" style="padding-top: 20px; justify-content: center;
+            display: flex;"><div class="row-wrap">
+                <div class="row-middle">Flight Duration:</div>
+                <div class="row-bottom">12h56m</div>
+              </div>
+            </div>
+
+            <div class="col-md-4" style="padding-top: 10px; justify-content: center;
+            display: flex;">
+            <div class="row-wrap">
+            <mat-radio-group aria-label="Select an option" [(ngModel)]="selectedClass">
+              <div class="row">
+                <div class="col-md-6">
+                  <mat-radio-button value="0" class="row-bottom" style="padding-right: 30px;" [disabled]="flight.economyTicketPrice < 0">Economy
+                  </mat-radio-button>
+                  <div class="row-bottom" style="color: rgba(0,0,0,.38);" *ngIf="flight.economyTicketPrice < 0">Out of Stock</div>
+                  <div class="row-bottom" style="padding-left: 10px;" *ngIf="flight.economyTicketPrice >= 0">${{flight.economyTicketPrice}}</div>
+                </div>
+                <div class="col-md-6">
+                  <mat-radio-button value="1" class="row-bottom" [disabled]="flight.businessTicketPrice < 0">Business</mat-radio-button>
+                  <div class="row-bottom" style="color: rgba(0,0,0,.38);" *ngIf="flight.businessTicketPrice < 0">Out of Stock</div>
+                  <div class="row-bottom" style="padding-left: 25px;" *ngIf="flight.businessTicketPrice >= 0">${{flight.businessTicketPrice}}</div>
+                </div>
+              </div>
+              
+              
+            </mat-radio-group>
+          </div>
+            </div>
+
+            
+          </div> 
+        
+        <mat-card-actions align="end">
+          <!-- <button mat-button>Flight Details</button> -->
+          <button mat-button (click)="bookFlight(flight)" [disabled]="selectedClass == null">Book</button>
+        </mat-card-actions>
+      </mat-card>
+  </mat-card>
+  
+  

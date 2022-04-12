@@ -1,0 +1,75 @@
+<div class="bg-gradient-primary">
+    <div class="container">
+
+        <!-- Outer Row -->
+        <div class="row justify-content-center">
+
+            <div class="col-xl-10 col-lg-12 col-md-9">
+
+                <div class="card o-hidden border-0 shadow-lg my-5">
+                    <div class="card-body p-0">
+
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="p-5">
+                                    <div class="text-center" style="font-size: x-large; padding-bottom: 15px;">
+                                        <div class="sidebar-brand d-flex align-items-center justify-content-center">
+                                            <div class="sidebar-brand-icon rotate-n-15">
+                                                <i class="fas fa-flight"></i>
+                                            </div>
+                                            <div class="sidebar-brand-text mx-1">Flight Management System </div>
+
+                                        </div>
+                                    </div>
+                                    <form class="user" [formGroup]="loginForm" (ngSubmit)="login()">
+                                        <mat-form-field class="example-full-width">
+                                            <mat-label>Username</mat-label>
+                                            <input type="email"  matInput [formControlName]="'username'" [errorStateMatcher]="matcher">
+
+                                            <mat-error *ngIf="userFormControl.hasError('email') && !userFormControl.hasError('required')">
+                                                Please enter a valid username
+                                            </mat-error>
+                                            <mat-error *ngIf="userFormControl.hasError('required')">
+                                                Username is <strong>required</strong>
+                                            </mat-error>
+                                        </mat-form-field>
+
+                                        <mat-form-field class="example-full-width" style="padding-bottom: 1.5rem;">
+                                            <mat-label>Password</mat-label>
+                                            <input type="password"  matInput [formControlName]="'password'" [errorStateMatcher]="matcher">
+
+                                            <mat-error *ngIf="passwordFormControl.hasError('password') && !passwordFormControl.hasError('required')">
+                                                Please enter a valid password
+                                            </mat-error>
+                                            <mat-error *ngIf="passwordFormControl.hasError('required')">
+                                                Password is <strong>required</strong>
+                                            </mat-error>
+                                        </mat-form-field>
+                                        <button type="submit" class="btn-block" mat-raised-button color="primary" [class.spinner]="loading" [disabled]="!loginForm.valid || loading">Login</button>
+                                        <mat-error style="padding-top: 10px; text-align: center;" *ngIf="this.isError">
+                                            Wrong username and/or password!
+                                        </mat-error>
+                                    </form>
+
+
+                                    <hr>
+                                    <!-- <div class="text-center">
+                                        <a class="small" routerLink="/forgot-password">Forgot Password?</a>
+                                    </div> -->
+                                    <div class="text-center">
+                                        <a class="small" routerLink="/signup">Create an Account!</a>
+                                    </div>
+                                    <!-- <div class="text-center">
+                                        <a class="small" (click)="guestLogin()" style="cursor: pointer;">Sign in as Demo User</a>
+                                    </div> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>

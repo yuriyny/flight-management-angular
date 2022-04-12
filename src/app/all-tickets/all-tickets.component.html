@@ -1,0 +1,54 @@
+<div class="container-fluid"style="max-width: 100%;overflow: auto;">
+    <!-- Page Heading -->
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800"></h1>
+    </div>
+
+
+    <div class="example-header">
+        <mat-form-field>
+            <input matInput (keyup)="applyFilter($any($event.target).value)" placeholder="Filter">
+        </mat-form-field>
+    </div>
+
+    <div class="example-container mat-elevation-z8">
+
+        <mat-table [dataSource]="dataSource" matSort>
+
+            <ng-container matColumnDef="ticketId">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{row.ticketId}} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="ticketClass">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Class </mat-header-cell>
+                <mat-cell *matCellDef="let row"><span *ngIf="row.ticketClass == 0">Economy</span><span *ngIf="row.ticketClass == 1">Business</span></mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="flightCode">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Flight Code </mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{row.flightCode}} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="price">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Price </mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{row.price}} </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="username">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> User </mat-header-cell>
+                <mat-cell *matCellDef="let row"><span *ngIf="row.username == ''">N/A</span><span *ngIf="row.username != ''"><a [routerLink]="['/home/user-details/',row.userId]">{{row.username}}</a></span>  </mat-cell>
+            </ng-container>
+            <!-- <ng-container matColumnDef="userId">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> User ID </mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{row.userId}} </mat-cell>
+            </ng-container> -->
+            
+
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;">
+            </mat-row>
+        </mat-table>
+
+        <mat-paginator [pageSizeOptions]="[10, 25, 100]"></mat-paginator>
+    </div>
+</div>

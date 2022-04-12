@@ -1,0 +1,57 @@
+.example-container {
+    display: flex;
+    flex-direction: column;
+    min-width: 300px;
+}
+
+.example-header {
+    min-height: 64px;
+    padding: 8px 24px 0;
+}
+
+.mat-form-field {
+    font-size: 14px;
+    width: 100%;
+}
+
+.mat-table {
+    overflow: auto;
+}
+
+.mat-mini-fab.mat-primary {
+    background-color: #7e3184;
+}
+
+.mat-fab:not([class*="mat-elevation-z"]),
+.mat-mini-fab:not([class*="mat-elevation-z"]) {
+    box-shadow: none;
+}
+
+.mat-column-ticketId {
+    //flex: none;
+    // flex-grow: 0;
+    // flex-shrink: 1;
+    // flex-basis: auto;
+    max-width: 5%;
+    //text-align: center !important;
+    //font-weight: bold;
+}
+
+.row-wrap {
+    //text-align: center;
+    float: left;
+    margin: 0 10px;
+  }
+  
+  .row-middle {
+    font-size: 14px;
+  }
+
+  .row-top {
+      font-size: 16px;
+  }
+
+  .row-bottom {
+    font-size: 15px;
+    font-weight: bold;
+}

@@ -1,0 +1,128 @@
+<form #searchForm="ngForm" class="form-container" [formGroup]="searchFlightForm">
+    <mat-card style="background: #ffffffbd;">
+      <mat-card-header>
+        <mat-card-title>Flight Search</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <mat-tab-group mat-stretch-tabs dynamicHeight >
+          <mat-tab label="One Way ">       
+            <div class="row g-0">
+              <div class="col-md-6">
+                <mat-form-field class="full-width">
+                  <input matInput placeholder="From" [formControlName]="'fromCity'">
+                </mat-form-field>
+              </div>
+              <div class="col-md-6">
+                <mat-form-field class="full-width">
+                  <input matInput placeholder="To" [formControlName]="'toCity'">
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="row g-0" style="padding: 10px;">               
+              <mat-checkbox [formControlName]="'flexDate'">Flex Date</mat-checkbox>         
+            </div>
+            <div class="row g-0" *ngIf="searchFlightForm.get('flexDate')!.value == false">
+                <div class="col-md-6">
+                  <mat-form-field class="full-width" appearance="fill">
+                    <mat-label>Departure Date</mat-label>
+                    <input matInput [matDatepicker]="picker2" [formControlName]="'departureTime'">
+                    <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                    <mat-datepicker #picker2></mat-datepicker>
+                  </mat-form-field>
+                </div>
+            </div>
+            <div class="row g-0" *ngIf="searchFlightForm.get('flexDate')!.value == true">
+              <div class="col-md-6">
+                <mat-form-field class="full-width" appearance="fill">
+                  <mat-label>Departure Dates</mat-label>
+                  <mat-date-range-input [rangePicker]="picker5">
+                    <input matStartDate [formControlName]="'departureTimeStart'" placeholder="Start date">
+                    <input matEndDate [formControlName]="'departureTimeEnd'" placeholder="End date">
+                  </mat-date-range-input>
+                  <mat-datepicker-toggle matSuffix [for]="picker5"></mat-datepicker-toggle>
+                  <mat-date-range-picker #picker5></mat-date-range-picker>
+                </mat-form-field>
+              </div>
+            </div>
+            <!-- {{searchFlightForm.get('departureTimeStart')!.value}} <br>
+            {{searchFlightForm.get('departureTimeEnd')!.value}} -->
+          
+          <div class="row g-0" style="padding-left: 10px; text-align: center;">
+            <mat-card-actions style="padding: 10px;">
+              <button mat-raised-button color="primary" class="cbtn" (click)="searchOneWayFlight(searchForm)">Search Flights</button>
+            </mat-card-actions>
+          </div>
+          </mat-tab>
+          <mat-tab label="Round Trip">
+            
+            <div class="row g-0">
+              <div class="col-md-6">
+                <mat-form-field class="full-width">
+                  <input matInput placeholder="From" [formControlName]="'fromCity'">
+                </mat-form-field>
+              </div>
+              <div class="col-md-6">
+                <mat-form-field class="full-width">
+                  <input matInput placeholder="To" [formControlName]="'toCity'">
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="row g-0" style="padding: 10px;">               
+              <mat-checkbox [formControlName]="'flexDate'">Flex Date</mat-checkbox>         
+            </div>
+            <div class="row g-0" *ngIf="searchFlightForm.get('flexDate')!.value == false">
+                <div class="col-md-6">
+                  <mat-form-field class="full-width" appearance="fill">
+                    <mat-label>Departure Date</mat-label>
+                    <input matInput [matDatepicker]="picker12" [formControlName]="'departureTime'">
+                    <mat-datepicker-toggle matSuffix [for]="picker12"></mat-datepicker-toggle>
+                    <mat-datepicker #picker12></mat-datepicker>
+                  </mat-form-field>
+                </div>
+                <div class="col-md-6 ">
+                    <mat-form-field class="full-width" appearance="fill">
+                        <mat-label>Return Date</mat-label>
+                        <input matInput [matDatepicker]="picker1" [formControlName]="'returnTime'">
+                        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                        <mat-datepicker #picker1></mat-datepicker>
+                    </mat-form-field>                  
+                </div>
+              </div>
+            <div class="row g-0" *ngIf="searchFlightForm.get('flexDate')!.value == true">
+                <div class="col-md-6">
+                  <mat-form-field class="full-width" appearance="fill">
+                    <mat-label>Departure Dates</mat-label>
+                    <mat-date-range-input [rangePicker]="picker5">
+                      <input matStartDate [formControlName]="'departureTimeStart'" placeholder="Start date">
+                      <input matEndDate [formControlName]="'departureTimeEnd'" placeholder="End date">
+                    </mat-date-range-input>
+                    <mat-datepicker-toggle matSuffix [for]="picker5"></mat-datepicker-toggle>
+                    <mat-date-range-picker #picker5></mat-date-range-picker>
+                  </mat-form-field>
+                </div>
+                <div class="col-md-6">
+                  <mat-form-field class="full-width" appearance="fill">
+                    <mat-label>Return Dates</mat-label>
+                    <mat-date-range-input [rangePicker]="picker55">
+                      <input matStartDate [formControlName]="'returnTimeStart'" placeholder="Start date">
+                      <input matEndDate [formControlName]="'returnTimeEnd'" placeholder="End date">
+                    </mat-date-range-input>
+                    <mat-datepicker-toggle matSuffix [for]="picker55"></mat-datepicker-toggle>
+                    <mat-date-range-picker #picker55></mat-date-range-picker>
+                  </mat-form-field>
+                </div>
+            </div>
+              <!-- {{searchFlightForm.get('departureTimeStart')!.value}} <br>
+              {{searchFlightForm.get('departureTimeEnd')!.value}} -->
+              <mat-card-actions>
+                <button mat-raised-button color="primary" (click)="searchTwoWayFlight(searchForm)">Search Flights</button>
+              </mat-card-actions>
+            
+          </mat-tab>
+        </mat-tab-group>        
+      </mat-card-content>
+    </mat-card>
+  </form>
+
+  
+  

@@ -1,0 +1,73 @@
+<mat-toolbar class="mat-elevation-z8">
+    <button mat-icon-button *ngIf="sidenav.mode === 'over'" (click)="sidenav.toggle()">
+        <mat-icon *ngIf="!sidenav.opened">
+            menu
+        </mat-icon>
+        <mat-icon *ngIf="sidenav.opened">
+            close
+        </mat-icon>
+    </button>
+    Flight Management System
+</mat-toolbar>
+
+<mat-sidenav-container>
+    <mat-sidenav #sidenav="matSidenav" class="mat-elevation-z8">
+
+        <img class="avatar mat-elevation-z8" src="https://i.ibb.co/NYMD1kV/fly.png" />
+
+        <h5 class="name" style="margin-top: 30px;" *ngIf="username">{{username}}</h5>
+        <!-- <p class="extra info">Software Engineer</p> -->
+
+        <mat-divider></mat-divider>
+
+        <button mat-button class="menu-button" routerLink="/home/search-flight">
+            <mat-icon>home</mat-icon>
+            <span>Home</span>
+        </button>
+        <!-- <button mat-button class="menu-button" routerLink="/home/flight-list">
+            <mat-icon>flight</mat-icon>
+            <span>Flight List</span>
+        </button> -->
+        <button mat-button class="menu-button" routerLink="/home/flights-details"*ngIf="username == 'admin'">
+            <mat-icon>flight</mat-icon>
+            <span>All Flights</span>
+        </button>
+        <button mat-button class="menu-button" routerLink="/home/tickets-details"*ngIf="username == 'admin'">
+            <mat-icon>book</mat-icon>
+            <span>All Tickets</span>
+        </button>
+        <button mat-button class="menu-button" (click)="openAddFlightDialog()" *ngIf="username == 'admin'">
+            <mat-icon>add</mat-icon>
+            <span>Add Flight</span>
+        </button>
+        
+        <button mat-button class="menu-button" (click)="openAddTicketDialog()" *ngIf="username == 'admin'">
+            <mat-icon>add</mat-icon>
+            <span>Add Ticket</span>
+        </button>
+        <button mat-button class="menu-button" routerLink="/home/my-reservations">
+            <mat-icon>list_alt</mat-icon>
+            <span>Reservations</span>
+        </button>
+        <button mat-button class="menu-button" routerLink="/home/user-details">
+            <mat-icon>person</mat-icon>
+            <span>Profile</span>
+        </button>
+        
+
+        <mat-divider></mat-divider>
+
+        
+        <button mat-button class="menu-button" (click)="logout()">
+            <mat-icon>logout</mat-icon>
+            <span>Logout</span>
+        </button>
+
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <div class="content mat-elevation-z8" style="position: relative; overflow-y: auto; background-image: url('https://images.unsplash.com/photo-1487621167305-5d248087c724?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1932&q=80');">
+            <div class="sbar" style="position: absolute; width: 80%; height: 80%; padding-bottom: 50px;"><router-outlet></router-outlet></div>
+            
+        </div>
+    </mat-sidenav-content>
+</mat-sidenav-container>

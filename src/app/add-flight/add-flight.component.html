@@ -1,0 +1,105 @@
+<div mat-dialog-content>
+    <div class="container-fluid popwindow">
+        <div class="add-form">
+            <form #addForm="ngForm" class="add-project-form" [formGroup]="addFlightForm">
+                <mat-form-field class="form-full-width">
+                    <input matInput placeholder="Airline Name" [formControlName]="'airlineName'" [errorStateMatcher]="matcher">
+                    <mat-error *ngIf="addFlightForm.get('airlineName')!.hasError('required')">
+                        Airline Name is <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field class="form-full-width">
+                    <textarea matInput placeholder="Flight Code" [formControlName]="'flightCode'" [errorStateMatcher]="matcher"></textarea>
+                    <mat-error *ngIf="addFlightForm.get('flightCode')!.hasError('required')">
+                        Flight Code is <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field class="form-full-width">
+                    <input matInput placeholder="From City" [formControlName]="'fromCity'" [errorStateMatcher]="matcher">
+                    <mat-error *ngIf="addFlightForm.get('fromCity')!.hasError('required')">
+                        Departure City is <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field class="form-full-width">
+                    <textarea matInput placeholder="From Airport" [formControlName]="'fromAirport'" [errorStateMatcher]="matcher"></textarea>
+                    <mat-error *ngIf="addFlightForm.get('fromAirport')!.hasError('required')">
+                        Departure Airport is <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+                <!-- <mat-form-field class="form-full-width">
+                    <input matInput placeholder="Departure Time" [formControlName]="'departureTime'" [errorStateMatcher]="matcher">
+                    <mat-error *ngIf="addFlightForm.get('departureTime')!.hasError('required')">
+                        Departure Time is <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field class="form-full-width">
+                    <textarea matInput placeholder="Arrival Time" [formControlName]="'arrivalTime'" [errorStateMatcher]="matcher"></textarea>
+                    <mat-error *ngIf="addFlightForm.get('arrivalTime')!.hasError('required')">
+                        Arrival Time is <strong>required</strong>
+                    </mat-error>
+                </mat-form-field> -->
+
+                <mat-form-field class="full-width" style="width: 100%;">
+                    <input matInput [ngxMatDatetimePicker]="picker3" placeholder="Departure Date"  [formControlName]="'departureTime'" [min]="minDate">
+                    
+                    <mat-datepicker-toggle matSuffix [for]="$any(picker3)"></mat-datepicker-toggle>
+                
+                    <ngx-mat-datetime-picker #picker3 [enableMeridian]="true" ></ngx-mat-datetime-picker>
+                    <mat-error *ngIf="addFlightForm.get('departureTime')!.hasError('required')">
+                        Departure Time is <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field class="full-width" style="width: 100%;">
+                    <input matInput [ngxMatDatetimePicker]="picker33" placeholder="Arrival Date" [formControlName]="'arrivalTime'">
+                    
+                    <mat-datepicker-toggle matSuffix [for]="$any(picker33)" ></mat-datepicker-toggle>
+                
+                    <ngx-mat-datetime-picker #picker33 [enableMeridian]="true" ></ngx-mat-datetime-picker>
+                    <mat-error *ngIf="addFlightForm.get('arrivalTime')!.hasError('required')">
+                        Arrival Time is <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+
+                <!-- <mat-form-field class="full-width" appearance="fill">
+                    <mat-label>Departure Date</mat-label>
+                    <input matInput [matDatepicker]="picker" [formControlName]="'departureTime'">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                    <mat-error *ngIf="addFlightForm.get('departureTime')!.hasError('required')">
+                        Departure Time is <strong>required</strong>
+                    </mat-error>
+                </mat-form-field> 
+
+                <mat-form-field class="full-width" appearance="fill">
+                    <mat-label>Arrival Date</mat-label>
+                    <input matInput [matDatepicker]="picker2" [formControlName]="'arrivalTime'">
+                    <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                    <mat-datepicker #picker2></mat-datepicker>
+                    <mat-error *ngIf="addFlightForm.get('arrivalTime')!.hasError('required')">
+                        Arrival Time is <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>  -->
+
+                <mat-form-field class="form-full-width">
+                    <textarea matInput placeholder="To City" [formControlName]="'toCity'" [errorStateMatcher]="matcher"></textarea>
+                    <mat-error *ngIf="addFlightForm.get('toCity')!.hasError('required')">
+                        Arrival City is <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field class="form-full-width">
+                    <input matInput placeholder="Arrival Airport" [formControlName]="'toAirport'" [errorStateMatcher]="matcher">
+                    <mat-error *ngIf="addFlightForm.get('toAirport')!.hasError('required')">
+                        Arrival Airport is <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+
+                <!-- <button (click)="addProject(addForm)" mat-raised-button color="primary" [disabled]="!addProjectForm.valid">Create Project</button> -->
+                <button (click)="addFlight(addForm)" style="margin-top: 15px;" mat-raised-button color="primary" [disabled]="!addFlightForm.valid">Add Flight</button>
+            </form>
+
+        </div>
+    </div>
+</div>

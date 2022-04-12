@@ -1,0 +1,54 @@
+.bg-gradient-primary {
+    height: 100vh;
+    background-size: cover;
+    background-image: linear-gradient(180deg, #415368 10%, #222a377a),url("https://images.unsplash.com/photo-1487621167305-5d248087c724?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1932&q=80");
+}
+
+.container {
+    max-width: 600px;
+}
+
+.rotate-n-15 {
+    transform: rotate(-320deg);
+}
+
+.example-form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+}
+
+.example-full-width {
+    width: 100%;
+}
+
+.mat-raised-button {
+    background-color: #435163;
+    padding: .15rem 1rem;
+}
+
+@keyframes spinner {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.spinner:before {
+    content: '';
+    box-sizing: border-box;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    margin-top: -10px;
+    margin-left: -10px;
+    border-radius: 50%;
+    border: 2px solid #ffffff;
+    border-top-color: #000000;
+    animation: spinner .8s linear infinite;
+}
+
+.btn-block{
+    width: 100%;
+}

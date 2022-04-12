@@ -1,0 +1,31 @@
+.full-width{
+    width: 100%;
+}
+
+.top-padding{
+    padding-top: 3px;
+}
+
+.margin-left mat-radio-button:not(:first-child){
+    margin-left:10px;
+}
+
+// .form-container{
+//     margin: 100px;
+// }
+
+.col-md-6{
+    padding: 10px;
+}
+:host ::ng-deep .mat-card-header-text {
+    margin: 0;
+}
+
+::ng-deep .mat-ink-bar {
+    background-color:#39c8dc  !important;
+    width: 50% !important;
+}
+
+::ng-deep .btn{
+    background-color: #5c728b !important;
+}
